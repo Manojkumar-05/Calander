@@ -640,7 +640,7 @@ export default function Calendar() {
                       className={`text-sm font-bold ${
                         isCurrentDay
                           ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-xs shadow-lg"
-                          : "text-black"
+                          : isDarkMode ? "text-white" : "text-black"
                       }`}
                     >
                       {format(date, "d")}
@@ -716,9 +716,9 @@ export default function Calendar() {
                           }}
                         >
                           <div className={`flex items-center space-x-2 px-3 py-2 ${categoryColor} bg-opacity-90`}>
-                            <span className="font-bold text-black text-xs">{event.time}</span>
-                            <span className="truncate text-black font-medium">{event.title}</span>
-                            {conflictLevel && <AlertTriangle className="w-3 h-3 flex-shrink-0 text-black" />}
+                            <span className={`font-bold text-xs ${isDarkMode ? 'text-white' : 'text-black'}`}>{event.time}</span>
+                            <span className={`truncate font-medium ${isDarkMode ? 'text-white' : 'text-black'}`}>{event.title}</span>
+                            {conflictLevel && <AlertTriangle className={`w-3 h-3 flex-shrink-0 ${isDarkMode ? 'text-white' : 'text-black'}`} />}
                           </div>
                         </div>
                       )
