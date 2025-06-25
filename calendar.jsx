@@ -392,61 +392,59 @@ export default function Calendar() {
     }`}>
       {/* Conflict Notifications */}
       {showConflictNotification && (
-        <ConflictNotification
-          conflicts={conflictNotifications}
-          onClose={() => setShowConflictNotification(false)}
-          onResolve={resolveConflicts}
+      <ConflictNotification
+        conflicts={conflictNotifications}
+        onClose={() => setShowConflictNotification(false)}
+        onResolve={resolveConflicts}
           isDarkMode={isDarkMode}
-        />
+      />
       )}
 
-      <div className="max-w-7xl mx-auto p-6">
-        {/* Header */}
-        <div className={`rounded-2xl shadow-lg border p-8 mb-8 transition-colors duration-300 ${
+      <div className="max-w-7xl mx-auto p-2 sm:p-4 md:p-6">
+      {/* Header */}
+        <div className={`rounded-2xl shadow-lg border p-4 sm:p-6 md:p-8 mb-4 sm:mb-8 transition-colors duration-300 ${
           isDarkMode 
             ? 'bg-gray-800 border-gray-700' 
             : 'bg-white border-gray-100'
         }`}>
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-6 lg:space-y-0">
-            <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <div className="flex items-center space-x-4">
-                <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-xl">
-                  <CalendarIcon className="w-8 h-8 text-white" />
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 sm:space-y-6 lg:space-y-0">
+            <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 md:space-x-6">
+              <div className="flex items-center space-x-2 sm:space-x-4">
+                <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 sm:p-3 rounded-xl">
+                  <CalendarIcon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 <div>
-                  <h1 className={`text-4xl font-bold transition-colors duration-300 ${
+                  <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold transition-colors duration-300 ${
                     isDarkMode 
                       ? 'bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent' 
                       : 'bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'
                   }`}>
                     {format(currentDate, "MMMM yyyy")}
                   </h1>
-                  <p className={`text-sm mt-1 transition-colors duration-300 ${
+                  <p className={`text-xs sm:text-sm mt-1 transition-colors duration-300 ${
                     isDarkMode ? 'text-gray-400' : 'text-gray-500'
                   }`}>Calendar & Event Management</p>
                 </div>
               </div>
-              
               {/* Date Picker */}
-              <div className="relative">
-                <CalendarIcon className={`absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 transition-colors duration-300 ${
+              <div className="relative w-full max-w-[180px]">
+                <CalendarIcon className={`absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-300 ${
                   isDarkMode ? 'text-gray-400' : 'text-gray-400'
                 }`} />
                 <input
                   type="date"
                   value={selectedDateInput}
                   onChange={(e) => handleDateSelect(e.target.value)}
-                  className={`pl-12 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                  className={`pl-10 pr-2 sm:pl-12 sm:pr-4 py-2 sm:py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 w-full text-xs sm:text-base ${
                     isDarkMode 
                       ? 'bg-gray-700 border-gray-600 text-white hover:bg-gray-600' 
                       : 'bg-gray-50 border-gray-200 hover:bg-white'
                   }`}
                 />
               </div>
-              
               <button
                 onClick={goToToday}
-                className={`px-6 py-3 text-sm font-semibold rounded-xl transition-all duration-200 border ${
+                className={`px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200 border ${
                   isDarkMode 
                     ? 'text-blue-400 bg-blue-900/20 border-blue-700 hover:bg-blue-900/30' 
                     : 'text-blue-700 bg-blue-50 border-blue-200 hover:bg-blue-100 hover:border-blue-300'
@@ -455,44 +453,41 @@ export default function Calendar() {
                 Today
               </button>
             </div>
-
             {/* Dark Mode Toggle */}
             <button
               onClick={toggleDarkMode}
-              className={`p-3 rounded-xl transition-all duration-200 ${
+              className={`p-2 sm:p-3 rounded-xl transition-all duration-200 ${
                 isDarkMode 
                   ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400' 
                   : 'bg-gray-100 hover:bg-gray-200 text-gray-600'
               }`}
               title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
-              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {isDarkMode ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
             </button>
-
             {Object.keys(allConflicts).length > 0 && (
-              <div className={`flex items-center space-x-3 px-4 py-3 rounded-xl border transition-colors duration-300 ${
+              <div className={`flex items-center space-x-2 sm:space-x-3 px-2 sm:px-4 py-2 sm:py-3 rounded-xl border transition-colors duration-300 text-xs sm:text-sm ${
                 isDarkMode 
                   ? 'bg-gradient-to-r from-red-900/50 to-pink-900/50 text-red-400 border-red-700' 
                   : 'bg-gradient-to-r from-red-50 to-pink-50 text-red-700 border-red-200'
               }`}>
-                <div className={`p-2 rounded-lg ${
+                <div className={`p-1 sm:p-2 rounded-lg ${
                   isDarkMode ? 'bg-red-800' : 'bg-red-100'
                 }`}>
-                  <Bell className="w-5 h-5 text-red-600" />
+                  <Bell className="w-4 h-4 sm:w-5 sm:h-5 text-red-600" />
                 </div>
-                <span className="text-sm font-semibold">
+                <span className="font-semibold">
                   {Object.keys(allConflicts).length} conflict{Object.keys(allConflicts).length > 1 ? "s" : ""} detected
                 </span>
               </div>
             )}
           </div>
-
-          <div className={`flex flex-col lg:flex-row items-stretch lg:items-center space-y-4 lg:space-y-0 lg:space-x-6 mt-8 pt-8 border-t transition-colors duration-300 ${
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center space-y-2 sm:space-y-4 lg:space-y-0 lg:space-x-6 mt-4 sm:mt-8 pt-4 sm:pt-8 border-t transition-colors duration-300 ${
             isDarkMode ? 'border-gray-700' : 'border-gray-100'
-          }`}>
+          }">
             {/* Search */}
-            <div className="relative flex-1 max-w-md">
-              <Search className={`absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 transition-colors duration-300 ${
+            <div className="relative flex-1 max-w-full sm:max-w-md">
+              <Search className={`absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-300 ${
                 isDarkMode ? 'text-gray-400' : 'text-gray-400'
               }`} />
               <input
@@ -500,23 +495,22 @@ export default function Calendar() {
                 placeholder="Search events..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                className={`w-full pl-10 pr-2 sm:pl-12 sm:pr-4 py-2 sm:py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 text-xs sm:text-base ${
                   isDarkMode 
                     ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 hover:bg-gray-600' 
                     : 'bg-gray-50 border-gray-200 hover:bg-white'
                 }`}
               />
             </div>
-
             {/* Category Filter */}
-            <div className="relative">
-              <Filter className={`absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 transition-colors duration-300 ${
+            <div className="relative w-full max-w-[180px]">
+              <Filter className={`absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-300 ${
                 isDarkMode ? 'text-gray-400' : 'text-gray-400'
               }`} />
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className={`pl-12 pr-10 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none transition-colors duration-300 ${
+                className={`pl-10 pr-2 sm:pl-12 sm:pr-10 py-2 sm:py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none transition-colors duration-300 w-full text-xs sm:text-base ${
                   isDarkMode 
                     ? 'bg-gray-700 border-gray-600 text-white hover:bg-gray-600' 
                     : 'bg-gray-50 border-gray-200 hover:bg-white'
@@ -530,95 +524,81 @@ export default function Calendar() {
                 ))}
               </select>
             </div>
-
             {/* Navigation */}
-            <div className={`flex items-center space-x-2 rounded-xl p-1 transition-colors duration-300 ${
+            <div className={`flex items-center space-x-1 sm:space-x-2 rounded-xl p-1 transition-colors duration-300 ${
               isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
             }`}>
               <button 
                 onClick={goToPreviousMonth} 
-                className={`p-3 rounded-lg transition-all duration-200 hover:shadow-sm ${
+                className={`p-2 sm:p-3 rounded-lg transition-all duration-200 hover:shadow-sm ${
                   isDarkMode 
                     ? 'hover:bg-gray-600 text-gray-300' 
                     : 'hover:bg-white text-gray-600'
                 }`}
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
               <button 
                 onClick={goToNextMonth} 
-                className={`p-3 rounded-lg transition-all duration-200 hover:shadow-sm ${
+                className={`p-2 sm:p-3 rounded-lg transition-all duration-200 hover:shadow-sm ${
                   isDarkMode 
                     ? 'hover:bg-gray-600 text-gray-300' 
                     : 'hover:bg-white text-gray-600'
                 }`}
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
-
             {/* Create Event Button */}
             <button
               onClick={() => openCreateEventForm(selectedDate || new Date())}
-              className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="flex items-center space-x-2 sm:space-x-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-xs sm:text-base"
             >
-              <Plus className="w-5 h-5" />
+              <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="font-semibold">New Event</span>
             </button>
-
-            {/* Clear Events Button */}
-            {/* <button
-              onClick={clearAllEvents}
-              className="flex items-center space-x-3 px-4 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-              title="Clear all events"
-            >
-              <Trash2 className="w-5 h-5" />
-              <span className="font-semibold">Clear All</span>
-            </button> */}
           </div>
         </div>
-
-        {/* Calendar Grid */}
-        <div className={`rounded-2xl shadow-lg border overflow-hidden transition-colors duration-300 ${
+      {/* Calendar Grid */}
+        <div className={`rounded-2xl shadow-lg border overflow-x-auto transition-colors duration-300 ${
           isDarkMode 
             ? 'bg-gray-800 border-gray-700' 
             : 'bg-white border-gray-100'
         }`}>
-          {/* Days of week header */}
-          <div className={`grid grid-cols-7 transition-colors duration-300 ${
+        {/* Days of week header */}
+          <div className={`grid grid-cols-7 min-w-[560px] transition-colors duration-300 ${
             isDarkMode 
               ? 'bg-gradient-to-r from-gray-700 to-gray-800' 
               : 'bg-gradient-to-r from-gray-50 to-blue-50'
           }`}>
-            {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day) => (
-              <div
-                key={day}
-                className={`p-6 text-center text-sm font-bold border-r border-b transition-colors duration-300 last:border-r-0 ${
+          {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day) => (
+            <div
+              key={day}
+                className={`p-2 sm:p-4 text-center text-xs sm:text-sm font-bold border-r border-b transition-colors duration-300 last:border-r-0 ${
                   isDarkMode 
                     ? 'text-gray-300 border-gray-600' 
                     : 'text-gray-700 border-gray-200'
                 }`}
-              >
-                <span className="hidden sm:inline">{day}</span>
-                <span className="sm:hidden">{day.slice(0, 3)}</span>
-              </div>
-            ))}
-          </div>
+            >
+              <span className="hidden sm:inline">{day}</span>
+              <span className="sm:hidden">{day.slice(0, 3)}</span>
+            </div>
+          ))}
+        </div>
+        {/* Calendar dates */}
+          <div className="grid grid-cols-7 min-w-[560px]">
+          {calendarDates.map((date, index) => {
+            const dayEvents = getEventsForDate(date)
+            const eventConflicts = checkEventConflicts(dayEvents)
+            const isCurrentMonth = isSameMonth(date, currentDate)
+            const isCurrentDay = isToday(date)
+            const isSelected = selectedDate && isSameDay(date, selectedDate)
+            const dateString = format(date, "yyyy-MM-dd")
+            const hasDateConflicts = allConflicts[dateString]
 
-          {/* Calendar dates */}
-          <div className="grid grid-cols-7">
-            {calendarDates.map((date, index) => {
-              const dayEvents = getEventsForDate(date)
-              const eventConflicts = checkEventConflicts(dayEvents)
-              const isCurrentMonth = isSameMonth(date, currentDate)
-              const isCurrentDay = isToday(date)
-              const isSelected = selectedDate && isSameDay(date, selectedDate)
-              const dateString = format(date, "yyyy-MM-dd")
-              const hasDateConflicts = allConflicts[dateString]
-
-              return (
-                <div
-                  key={index}
+            return (
+              <div
+                key={index}
                   className={`group min-h-[160px] p-3 border-r border-b last:border-r-0 cursor-pointer transition-all duration-300 ${
                     isDarkMode 
                       ? `${
@@ -633,32 +613,32 @@ export default function Calendar() {
                         } ${isSelected ? 'bg-blue-50 ring-2 ring-blue-200 shadow-inner' : ''} ${hasDateConflicts ? 'bg-red-25' : ''}`
                   }`}
                   onClick={() => handleDateClick(date)}
-                  onDoubleClick={() => openCreateEventForm(date)}
-                >
+                onDoubleClick={() => openCreateEventForm(date)}
+              >
                   <div className="flex items-center justify-between mb-3">
-                    <span
+                  <span
                       className={`text-sm font-bold ${
-                        isCurrentDay
+                      isCurrentDay
                           ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-xs shadow-lg"
                           : isDarkMode ? "text-white" : "text-black"
-                      }`}
-                    >
-                      {format(date, "d")}
-                    </span>
-                    <div className="flex items-center space-x-1">
-                      {eventConflicts.hasConflict && (
+                    }`}
+                  >
+                    {format(date, "d")}
+                  </span>
+                  <div className="flex items-center space-x-1">
+                    {eventConflicts.hasConflict && (
                         <div className={`p-1 rounded-full ${
                           isDarkMode ? 'bg-red-800' : 'bg-red-100'
                         }`}>
-                          <AlertTriangle
-                            className={`w-4 h-4 ${
-                              eventConflicts.severity === "high"
+                      <AlertTriangle
+                        className={`w-4 h-4 ${
+                          eventConflicts.severity === "high"
                                 ? "text-red-400"
-                                : eventConflicts.severity === "medium"
+                            : eventConflicts.severity === "medium"
                                   ? "text-amber-400"
                                   : "text-yellow-400"
-                            }`}
-                          />
+                        }`}
+                      />
                         </div>
                       )}
                            {dayEvents.length > 0 && (
@@ -673,31 +653,31 @@ export default function Calendar() {
                         >
                           <Eye className="w-4 h-4" />
                         </button>
-                      )}
-                      {dayEvents.length > 0 && (
-                        <span
+                    )}
+                    {dayEvents.length > 0 && (
+                      <span
                           className={`text-xs px-2 py-1 rounded-full font-semibold ${
                             eventConflicts.hasConflict 
                               ? isDarkMode ? 'bg-red-800 text-red-300' : 'bg-red-100 text-red-700'
                               : isDarkMode ? 'bg-blue-800 text-blue-300' : 'bg-blue-100 text-blue-700'
-                          }`}
-                        >
-                          {dayEvents.length}
-                        </span>
-                      )}
+                        }`}
+                      >
+                        {dayEvents.length}
+                      </span>
+                    )}
                       {/* View Events Button */}
                  
-                    </div>
                   </div>
+                </div>
 
-                  {/* Events */}
+                {/* Events */}
                   <div className="space-y-2">
-                    {dayEvents.slice(0, 3).map((event) => {
-                      const conflictLevel = getEventConflictLevel(event, dayEvents)
+                  {dayEvents.slice(0, 3).map((event) => {
+                    const conflictLevel = getEventConflictLevel(event, dayEvents)
                       const categoryColor = eventCategories.find((cat) => cat.value === event.category)?.color || "bg-gray-500"
-                      return (
-                        <div
-                          key={event.id}
+                    return (
+                      <div
+                        key={event.id}
                           className={`text-xs rounded-lg overflow-hidden shadow-sm ${conflictLevel
                             ? `ring-2 ${
                                 conflictLevel === "high"
@@ -708,33 +688,33 @@ export default function Calendar() {
                               } ring-opacity-75`
                             : ""
                           } hover:shadow-md transition-all duration-200 ${conflictLevel ? "animate-pulse" : ""}`}
-                          title={`${event.title} - ${event.time} (${event.duration}min)${
-                            conflictLevel ? ` - ${conflictLevel.toUpperCase()} CONFLICT` : ""
-                          }`}
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            setSelectedDate(date)
-                          }}
-                        >
+                        title={`${event.title} - ${event.time} (${event.duration}min)${
+                          conflictLevel ? ` - ${conflictLevel.toUpperCase()} CONFLICT` : ""
+                        }`}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setSelectedDate(date)
+                        }}
+                      >
                           <div className={`flex items-center space-x-2 px-3 py-2 ${categoryColor} bg-opacity-90`}>
                             <span className={`font-bold text-xs ${isDarkMode ? 'text-white' : 'text-black'}`}>{event.time}</span>
                             <span className={`truncate font-medium ${isDarkMode ? 'text-white' : 'text-black'}`}>{event.title}</span>
                             {conflictLevel && <AlertTriangle className={`w-3 h-3 flex-shrink-0 ${isDarkMode ? 'text-white' : 'text-black'}`} />}
-                          </div>
                         </div>
-                      )
-                    })}
-                    {dayEvents.length > 3 && (
+                      </div>
+                    )
+                  })}
+                  {dayEvents.length > 3 && (
                       <div className={`text-xs font-semibold pl-2 py-1 rounded-lg transition-colors duration-300 ${
                         isDarkMode ? 'text-gray-400 bg-gray-700' : 'text-gray-500 bg-gray-50'
                       }`}>
                         +{dayEvents.length - 3} more events
                       </div>
-                    )}
-                  </div>
+                  )}
                 </div>
-              )
-            })}
+              </div>
+            )
+          })}
           </div>
         </div>
       </div>
@@ -764,11 +744,11 @@ export default function Calendar() {
                 </p>
               </div>
               <div className="flex items-center space-x-3">
-                <button
+            <button
                   onClick={() => openCreateEventForm(modalDate)}
                   className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                >
-                  <Plus className="w-4 h-4" />
+            >
+              <Plus className="w-4 h-4" />
                   <span className="font-semibold">Add Event</span>
                 </button>
                 <button
@@ -780,9 +760,9 @@ export default function Calendar() {
                   }`}
                 >
                   <X className="w-6 h-6" />
-                </button>
-              </div>
-            </div>
+            </button>
+          </div>
+                  </div>
 
             {/* Modal Content */}
             <div className="p-6 overflow-y-auto max-h-[60vh]">
@@ -799,7 +779,7 @@ export default function Calendar() {
                   {getEventsForDate(modalDate).map((event) => {
                     const conflictLevel = getEventConflictLevel(event, getEventsForDate(modalDate))
                     const categoryColor = eventCategories.find((cat) => cat.value === event.category)?.color || "bg-gray-500"
-                    return (
+            return (
                       <div
                         key={event.id}
                         className={`p-4 rounded-xl border transition-all duration-300 ${
@@ -819,7 +799,7 @@ export default function Calendar() {
                             <div className="flex items-center space-x-3 mb-2">
                               <div className={`px-3 py-1 rounded-full text-xs font-semibold ${categoryColor} text-white`}>
                                 {eventCategories.find((cat) => cat.value === event.category)?.label || "Other"}
-                              </div>
+                    </div>
                               {conflictLevel && (
                                 <div className={`flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-semibold ${
                                   conflictLevel === "high"
@@ -830,8 +810,8 @@ export default function Calendar() {
                                 }`}>
                                   <AlertTriangle className="w-3 h-3" />
                                   <span>{conflictLevel.toUpperCase()} CONFLICT</span>
-                                </div>
-                              )}
+                  </div>
+                )}
                             </div>
                             <h3 className={`text-lg font-bold mb-1 transition-colors duration-300 ${
                               isDarkMode ? 'text-white' : 'text-gray-900'
@@ -879,9 +859,9 @@ export default function Calendar() {
                               <Trash2 className="w-4 h-4" />
                             </button>
                           </div>
-                        </div>
-                      </div>
-                    )
+                </div>
+              </div>
+            )
                   })}
                 </div>
               )}
@@ -892,14 +872,14 @@ export default function Calendar() {
 
       {/* Event Form Modal */}
       {isEventFormOpen && (
-        <EventForm
+      <EventForm
           event={editingEvent}
           selectedDate={selectedDate}
           onSave={editingEvent ? handleEditEvent : handleCreateEvent}
           onCancel={() => {
-            setIsEventFormOpen(false)
-            setEditingEvent(null)
-          }}
+          setIsEventFormOpen(false)
+          setEditingEvent(null)
+        }}
           onDelete={editingEvent ? () => deleteEvent(editingEvent.id) : null}
           conflicts={editingEvent ? getEventConflicts(editingEvent) : []}
           isDarkMode={isDarkMode}
