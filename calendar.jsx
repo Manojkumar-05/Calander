@@ -567,14 +567,14 @@ export default function Calendar() {
             </button>
 
             {/* Clear Events Button */}
-            <button
+            {/* <button
               onClick={clearAllEvents}
               className="flex items-center space-x-3 px-4 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               title="Clear all events"
             >
               <Trash2 className="w-5 h-5" />
               <span className="font-semibold">Clear All</span>
-            </button>
+            </button> */}
           </div>
         </div>
 
