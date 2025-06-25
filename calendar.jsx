@@ -619,7 +619,7 @@ export default function Calendar() {
               return (
                 <div
                   key={index}
-                  className={`min-h-[160px] p-3 border-r border-b last:border-r-0 cursor-pointer transition-all duration-300 ${
+                  className={`group min-h-[160px] p-3 border-r border-b last:border-r-0 cursor-pointer transition-all duration-300 ${
                     isDarkMode 
                       ? `${
                           isCurrentMonth 
@@ -661,6 +661,19 @@ export default function Calendar() {
                           />
                         </div>
                       )}
+                           {dayEvents.length > 0 && (
+                        <button
+                          onClick={(e) => handleViewEvents(date, e)}
+                          className={`hidden group-hover:inline-flex p-1 rounded-lg transition-all duration-200 hover:shadow-sm ${
+                            isDarkMode 
+                              ? 'hover:bg-gray-600 text-gray-400 hover:text-blue-400' 
+                              : 'hover:bg-gray-100 text-gray-500 hover:text-blue-600'
+                          }`}
+                          title="View events for this day"
+                        >
+                          <Eye className="w-4 h-4" />
+                        </button>
+                      )}
                       {dayEvents.length > 0 && (
                         <span
                           className={`text-xs px-2 py-1 rounded-full font-semibold ${
@@ -673,19 +686,7 @@ export default function Calendar() {
                         </span>
                       )}
                       {/* View Events Button */}
-                      {dayEvents.length > 0 && (
-                        <button
-                          onClick={(e) => handleViewEvents(date, e)}
-                          className={`p-1 rounded-lg transition-all duration-200 hover:shadow-sm ${
-                            isDarkMode 
-                              ? 'hover:bg-gray-600 text-gray-400 hover:text-blue-400' 
-                              : 'hover:bg-gray-100 text-gray-500 hover:text-blue-600'
-                          }`}
-                          title="View events for this day"
-                        >
-                          <Eye className="w-4 h-4" />
-                        </button>
-                      )}
+                 
                     </div>
                   </div>
 
@@ -904,23 +905,6 @@ export default function Calendar() {
           isDarkMode={isDarkMode}
         />
       )}
-
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes slide-in {
-          from {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-        .animate-slide-in {
-          animation: slide-in 0.3s ease-out;
-        }
-      `}</style>
     </div>
   )
 }
